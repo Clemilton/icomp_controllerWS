@@ -23,6 +23,7 @@ class ComposerStaticInit6530c38e0f0c9605cd0be0f5dd6bed10
         'I' => 
         array (
             'Interop\\Container\\' => 18,
+            'Icomp\\' => 6,
         ),
         'F' => 
         array (
@@ -47,14 +48,14 @@ class ComposerStaticInit6530c38e0f0c9605cd0be0f5dd6bed10
         array (
             0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
         ),
+        'Icomp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/icomp/php-classes/src',
+        ),
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
-    );
-
-    public static $fallbackDirsPsr4 = array (
-        0 => __DIR__ . '/..' . '/icomp_controller/php-classes/src',
     );
 
     public static $prefixesPsr0 = array (
@@ -79,7 +80,6 @@ class ComposerStaticInit6530c38e0f0c9605cd0be0f5dd6bed10
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit6530c38e0f0c9605cd0be0f5dd6bed10::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit6530c38e0f0c9605cd0be0f5dd6bed10::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit6530c38e0f0c9605cd0be0f5dd6bed10::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit6530c38e0f0c9605cd0be0f5dd6bed10::$prefixesPsr0;
 
         }, null, ClassLoader::class);

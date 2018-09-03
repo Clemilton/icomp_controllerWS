@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "": "vendor\\icomp_controller\\php-classes\\src"
+            "Icomp\\": "vendor\\icomp\\php-classes\\src"
         }
     }
 }
