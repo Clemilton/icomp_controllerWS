@@ -15,11 +15,10 @@ $app->config('debug', true);
 
 $app->get('/', function() {
     
-    $sql = new Icomp\DB\Sql();
+    $page = new Icomp\Page();
 
-    $results = $sql->select("SELECT * FROM login");
+    $page->setTpl("index");
 
-    echo json_encode($results);
     
 	
 
