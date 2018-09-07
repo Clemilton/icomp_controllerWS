@@ -1,0 +1,56 @@
+<div class="content-wrapper">
+
+	<section class="content-header">
+		<h1>
+			Lista de Usuários
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active"><a href="/admin/users">Usuários</a></li>
+		</ol>
+	</section>
+
+	<section class="content">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box box-primary">
+					<div class="box-header">
+						<a href="/admin/users/create" class="btn btn-success"> Cadastrar Usuário</a>
+
+						<div class="box-body no-padding">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th style="width: 10px">#</th>
+										<th>Nome</th>
+										<th>E-mail</th>
+										<th>Login</th>
+										<th style="width: 60px">Admin</th>
+										<th style="width: 240px">&nbsp;</th>
+									</tr>
+								</thead>
+								<tbody>
+									{loop="$users"}
+									<tr>
+										<td>{$value.id}</td>
+										<td>{$value.desname}</td>
+										<td>{$value.email}</td>
+										<td>{$value.username}</td>
+										<td>{if="$value.typeUser=='admin'"}Sim{else}Não{/if}</td>
+										<td>
+											<a href="/admin/user/{$value.id}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
+											<a href="/admin/user/{$value.id}/password" class="btn btn-default btn-xs"><i class="fa fa-unlock"></i>Alterar a senha</a>
+											<a href="/admin/user/{$value.id}/delete" class="btn btn-danger btn-xs" onclick="return confirm('Deseja realmente excluir esse usuário?')"><i class="fa fa-trash"></i>Excluir</a>
+
+									</td>
+								</tr>
+								{/loop}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</div>
