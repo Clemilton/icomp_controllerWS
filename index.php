@@ -18,7 +18,7 @@ $app = new \Slim\App([
 $app->config('debug', true);
 
 $app->get('/', function() {
-    
+
     $page = new Page();
 
     $page->setTpl("index");
@@ -26,6 +26,12 @@ $app->get('/', function() {
 });
 
 require_once('admin.php');
+
+require_once('admin-users.php');
+
+require_once('admin-places.php');
+
+require_once('admin-devices.php');
 
 $app->run();
 

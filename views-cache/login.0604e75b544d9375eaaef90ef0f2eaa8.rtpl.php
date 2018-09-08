@@ -45,7 +45,7 @@
       <?php if( $error != '' ){ ?>
 
         
-                  <div class="alert alert-danger " align="center" >
+                  <div class="alert alert-danger alert-dismissible " align="center" >
                     <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
 
                   </div>

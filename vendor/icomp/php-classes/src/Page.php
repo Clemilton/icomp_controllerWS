@@ -10,7 +10,7 @@ class Page{
 	private $defaults = [
 		"header"=>true,
 		"footer"=>true,
-		"data"=>[]
+		"data"=>["username"=>"Clemilton"]
 	];
 
 	private $dir_project = '';
@@ -30,8 +30,11 @@ class Page{
 
 		$this->setData($this->options['data']);
 
-		if($this->options["header"]==true) // caso a pagina tenha header
+		if($this->options["header"]==true){ // caso a pagina tenha header
+			$array = ["username"=>"Clemilton"];
+
 			$this->tpl->draw("header");
+		}
 	}
 
 	public function __destruct()

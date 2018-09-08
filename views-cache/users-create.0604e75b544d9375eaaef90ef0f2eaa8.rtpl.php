@@ -25,23 +25,23 @@
         <form role="form" action="/admin/users/create" method="post">
           <div class="box-body">
             <div class="form-group">
-              <label for="desperson">Nome</label>
+              <label for="desname">Nome</label>
               <input type="text" class="form-control" id="desname" name="desname" placeholder="Digite o nome">
             </div>
             <div class="form-group">
-              <label for="deslogin">Login</label>
+              <label for="username">Login</label>
               <input type="text" class="form-control" id="username" name="username" placeholder="Digite o login">
             </div>
             <div class="form-group">
-              <label for="nrphone">Telefone</label>
+              <label for="telefone">Telefone</label>
               <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone">
             </div>
             <div class="form-group">
-              <label for="desemail">E-mail</label>
+              <label for="email">E-mail</label>
               <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail">
             </div>
             <div class="form-group">
-              <label for="despassword">Senha</label>
+              <label for="password_hash">Senha</label>
               <input type="password" class="form-control" id="password_hash" name="password_hash" placeholder="Digite a senha">
             </div>
             <div class="checkbox">

@@ -1,0 +1,45 @@
+<div class="content-wrapper">
+
+<section class="content-header">
+  <h1>
+    {$place.name}
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="/admin/places">Lugares</a></li>
+    <li class="active"><a href="/admin/places/{$place.id}/comodos">{$place.name}</a></li>
+    <li class="active"><a href="/admin/places/{$place.id}/comodos/{$comodo.id}">Atualizar</a></li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-success">
+        <div class="box-header with-border">
+          <h3 class="box-title">Editar Comodo</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" action="/admin/places/{$place.id}/comodos/{$comodo.id}" method="post">
+          <div class="box-body">
+            <div class="form-group">
+              <label for="name">Nome</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Digite o nome" value="{$comodo.name}">
+            </div>
+
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-success">Atualizar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- /.content -->
+</div>

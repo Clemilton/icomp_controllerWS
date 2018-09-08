@@ -138,11 +138,14 @@ class User extends Model{
 			header("Location: /admin/login");
 			exit;
 		}
+		return $_SESSION[User::SESSION];
+		
 	}
 	public static function logout(){
 		$_SESSION[User::SESSION]=NULL;
 		
 	}
+
 
 	public static function getError()
 	{
@@ -192,5 +195,79 @@ class User extends Model{
 
 	}
 
+	public static function getMsgError(){
+
+
+		$msg = (isset($_SESSION[User::SESSION_ERROR]))? $_SESSION[User::SESSION_ERROR]:"";
+
+		User::clearMsgError();
+
+		return $msg;
+	}
+
+	public static function setMsgError($msg){
+		$_SESSION[User::SESSION_ERROR] = $msg;
+	}
+
+	public static function clearMsgError(){
+
+
+		$_SESSION[User::SESSION_ERROR]=NULL;
+
+	}
+
+	public function getPlaces($related= true){
+
+		$sql = new Sql();
+		if($related == true){
+			//Retorna todos os lugares que estao relacionados com a categoria
+			return $sql->select("
+				SELECT *
+				FROM places
+				WHERE places.id IN(
+					SELECT id_places
+					FROM places_user
+					WHERE id_user=:iduser
+				);",[
+				":iduser"=>$this->getid()
+			]);
+		}else{
+			//Retona todos os produtos que NAO estao relacionados com a categoria
+			return $sql->select("
+				SELECT *
+				FROM places
+				WHERE places.id NOT IN(
+					SELECT id_places
+					FROM places_user
+					WHERE id_user=:iduser
+				);",[
+				":iduser"=>$this->getid()
+			]);
+		}
+	}
+
+	public function addPlace($idplace){
+		$sql = new Sql();
+
+		$sql->query("
+			INSERT INTO places_user (id_user,id_places)
+			VALUES (:id_user,:id_places);
+			",[
+			":id_user"=>$this->getid(),
+			":id_places"=>$idplace
+		]);
+	}
+
+	public function removePlace($idplace){
+		$sql = new Sql();
+
+		$sql->query("
+			DELETE FROM places_user
+			WHERE id_user=:iduser and id_places=:idplaces;
+			",[
+			":iduser"=>$this->getid(),
+			":idplaces"=>$idplace
+		]);
+	}
 }
 ?>
