@@ -69,5 +69,13 @@ class Place extends Model{
 		]);
 
 	}
+
+	public static function getNameFromId($id){
+		$sql = new Sql();
+		$results = $sql->select("SELECT a.name FROM places a WHERE a.id=:id",[
+			":id"=>$id
+		]);
+		return $results[0]["name"];
+	}
 }
 ?>

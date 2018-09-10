@@ -62,6 +62,21 @@ class Comodo extends Model{
 		]);
 
 	}
+
+	public static function getComodosFromPlace($idplace){
+		$sql = new Sql();
+		return $sql->select("SELECT * from comodos WHERE id_places=:idplace",[
+			":idplace"=>$idplace
+		]);
+	}
+
+	public static function getNameFromId($id){
+		$sql = new Sql();
+		$results = $sql->select("SELECT a.name FROM comodos a WHERE a.id=:id",[
+			":id"=>$id
+		]);
+		return $results[0]["name"];
+	}
 }
 
 

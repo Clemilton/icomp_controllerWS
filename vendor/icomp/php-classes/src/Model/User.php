@@ -248,7 +248,7 @@ class User extends Model{
 
 	public function addPlace($idplace){
 		$sql = new Sql();
-
+		
 		$sql->query("
 			INSERT INTO places_user (id_user,id_places)
 			VALUES (:id_user,:id_places);

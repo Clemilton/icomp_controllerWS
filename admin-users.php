@@ -8,9 +8,8 @@ $app->get('/admin/users',function(){
 
 	$user = User::verifyLogin();
 
-	$page  = new PageAdmin(["data"=>[
-		"user"=>$user
-	]]);
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/user/");
 
 	$users = User::listAll();
 
@@ -24,9 +23,8 @@ $app->get('/admin/users',function(){
 $app->get('/admin/users/create',function(){
 	$user = User::verifyLogin();
 
-	$page  = new PageAdmin(["data"=>[
-		"user"=>$user
-	]]);
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/user/");
 
 
 	$page->setTpl("users-create");
@@ -66,9 +64,8 @@ $app->get("/admin/user/{iduser}",function($request,$response,$args){
 	$places = Place::listAll();
 
 
-	$page  = new PageAdmin(["data"=>[
-		"user"=>$user->getValues()
-	]]);
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user->getValues()]]
+							,$tpl_dir="/views/admin/user/");
 
 
 
@@ -109,9 +106,8 @@ $app->get("/admin/user/{iduser}/password",function($req,$res,$args){
 
 	$user = User::verifyLogin();
 
-	$page  = new PageAdmin(["data"=>[
-		"user"=>$user
-	]]);
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/user/");
 
 	$iduser = $args['iduser'];
 
