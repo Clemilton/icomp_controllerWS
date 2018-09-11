@@ -106,6 +106,7 @@ $app->get("/admin/places/{idplace}/comodos/{idcomodo}/delete",function($req,$res
 	$idplace=$args['idplace'];
 
 	$comodo = new Comodo();
+	$comodo->get((int)$idcomodo);
 
 	$comodo->delete((int)$args['idcomodo']);
 
@@ -113,5 +114,63 @@ $app->get("/admin/places/{idplace}/comodos/{idcomodo}/delete",function($req,$res
 	exit;
 
 });
+
+$app->get("/admin/places/{idplace}/comodos/{idcomodo}/devices",function($req,$res,$args){
+
+	$user=User::verifyLogin();
+	$idcomodo = $args['idcomodo'];
+	$idplace = $args['idplace'];
+
+	$comodo = new Comodo();
+	$comodo->get((int)$idcomodo);
+	$comodo->setid((int)$idcomodo);
+
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/comodos/");
+
+
+	$page->setTpl("comodos-device",[
+		"comodo"=>$comodo->getValues(),
+		"devicesRelated" => $comodo->getDevices(),
+		"devicesNotRelated" => $comodo->getDevices(false),
+		"idplace" => $idplace
+	]);
+
+});
+
+
+$app->get("/admin/comodos/{idcomodo}/devices/{iddevice}/addDevice",function($req,$res,$args){
+
+	$user=User::verifyLogin();
+	$idcomodo = $args['idcomodo'];
+	$iddevice = $args['iddevice'];
+
+	$comodo = new Comodo();
+	$comodo->get((int)$idcomodo);
+	$comodo->setid((int)$idcomodo);
+
+	$comodo->addDevice((int)$iddevice);
+
+	header("Location: /admin/places/".$comodo->getid_places()."/comodos/".
+			$idcomodo."/devices");
+	exit;
+});
+
+$app->get("/admin/comodos/{idcomodo}/devices/{iddevice}/removeDevice",function($req,$res,$args){
+
+	$user=User::verifyLogin();
+	$idcomodo = $args['idcomodo'];
+	$iddevice = $args['iddevice'];
+
+	$comodo = new Comodo();
+	$comodo->get((int)$idcomodo);
+	$comodo->setid((int)$idcomodo);
+	$comodo->removeDevice((int)$iddevice);
+
+	header("Location: /admin/places/".$comodo->getid_places()."/comodos/".
+			$idcomodo."/devices");
+	exit;
+});
+
 
 ?>

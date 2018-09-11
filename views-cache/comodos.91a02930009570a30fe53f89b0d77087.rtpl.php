@@ -26,7 +26,7 @@
 										<th style="width: 10px">#</th>
 										<th>Nome</th>
 									
-										<th style="width: 240px">&nbsp;</th>
+										<th style="width: 300px">&nbsp;</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -39,8 +39,11 @@
 										<td>
 											<a href="/admin/places/<?php echo htmlspecialchars( $place["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/comodos/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
 										
+
+
 											<a href="/admin/places/<?php echo htmlspecialchars( $place["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/comodos/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" class="btn btn-danger btn-xs" onclick="return confirm('Deseja realmente excluir esse usuário?')"><i class="fa fa-trash"></i>Excluir</a>
 											
+											<a href="/admin/places/<?php echo htmlspecialchars( $place["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/comodos/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/devices" class="btn btn-default btn-xs"><i class="fa fa-hotel"></i>Adicionar Device</a>
 
 									</td>
 								</tr>

@@ -77,6 +77,59 @@ class Comodo extends Model{
 		]);
 		return $results[0]["name"];
 	}
+
+	public function getDevices($related= true){
+
+		$sql = new Sql();
+
+		if($related == true){
+			//Retorna todos os lugares que estao relacionados com a categoria
+			return $sql->select("
+				SELECT *
+				FROM devices
+				WHERE devices.id IN(
+					SELECT devices_id
+					FROM comodos_device
+					WHERE comodos_id=:id_comodo
+				);",[
+				":id_comodo"=>$this->getid()
+			]);
+		}else{
+			//Retona todos os produtos que NAO estao relacionados com a categoria
+			return $sql->select("
+				SELECT *
+				FROM devices
+				WHERE devices.id NOT IN(
+					SELECT devices_id
+					FROM comodos_device
+					WHERE comodos_id=:id_comodo
+				);",[
+				":id_comodo"=>$this->getid()
+			]);
+		}
+	}
+
+	public function addDevice($iddevice){
+	
+		$sql = new Sql();
+		$sql->query("
+			INSERT INTO comodos_device (devices_id,comodos_id)
+			VALUES (:devices_id,:comodos_id);
+		",[
+			":devices_id"=>(int)$iddevice,
+			":comodos_id"=>(int)$this->getid()
+		]);
+	}
+	public function removeDevice($iddevice){
+		$sql = new Sql();
+		$sql->query("
+			DELETE FROM comodos_device
+			WHERE devices_id=:devices_id and comodos_id=:comodos_id;
+		",[
+			":devices_id"=>$iddevice,
+			":comodos_id"=>$this->getid()
+		]);
+	}
 }
 
 
