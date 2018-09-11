@@ -15,9 +15,8 @@ $app->get('/admin/controladores',function(){
 	$controladores = Controlador::addNames($controladores);
 
 
-	$page = new PageAdmin(["data"=>[
-		"user"=>$user
-	]]);
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/controladores/");
 
 	$page->setTpl("controladores",[
 		"controladores"=>$controladores
@@ -30,9 +29,9 @@ $app->get('/admin/controladores/create',function(){
 
 	$user = User::verifyLogin();
 
-	$page = new PageAdmin(["data"=>[
-		"user"=>$user
-	]]);
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/controladores/");
+
 	$places = Place::listAll();
 	
 	$page->setTpl("controladores-create",[
@@ -70,9 +69,8 @@ $app->get('/admin/controladores/{idcontrolador}',function($req,$res,$args){
 	$controlador->get($idcontrolador);
 
 
-	$page = new PageAdmin(["data"=>[
-		"user"=>$user
-	]]);
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/controladores/");
 
 	
 	$places = Place::listAll();

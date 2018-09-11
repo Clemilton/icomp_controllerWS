@@ -31,6 +31,8 @@ require_once('admin-users.php');
 
 require_once('admin-places.php');
 
+require_once('admin-comodos.php');
+
 require_once('admin-devices.php');
 
 require_once('admin-controladores.php');

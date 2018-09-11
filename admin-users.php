@@ -16,8 +16,6 @@ $app->get('/admin/users',function(){
 	$page->setTpl("users",[
 		'users'=>$users
 	]);
-
-
 });
 
 $app->get('/admin/users/create',function(){

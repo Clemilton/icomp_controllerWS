@@ -9,9 +9,8 @@ $app->get('/admin/devices',function(){
 
 	$devices = Device::listAll();
 
-	$page = new PageAdmin(["data"=>[
-		"user"=>$user
-	]]);
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/devices/");
 
 	$page->setTpl("devices",[
 		"devices"=>$devices
@@ -23,9 +22,8 @@ $app->get('/admin/devices/create',function(){
 
 	$user = User::verifyLogin();
 
-	$page = new PageAdmin(["data"=>[
-		"user"=>$user
-	]]);
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/devices/");
 
 	$page->setTpl("devices-create");
 });
@@ -49,9 +47,8 @@ $app->get('/admin/devices/{iddevice}',function($req,$res,$args){
 	
 	$iddevice = (int)$args['iddevice'];
 
-	$page = new PageAdmin(["data"=>[
-		"user"=>$user
-	]]);
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/devices/");
 
 	$device = new Device();
 	$device->get($iddevice);
