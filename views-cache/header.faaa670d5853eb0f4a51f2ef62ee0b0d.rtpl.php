@@ -155,6 +155,7 @@ desired effect
         <li><a href="/admin/places"><i class="fa fa-home"></i> <span>Lugares</span></a></li>
         <li><a href="/admin/devices"><i class="fa fa-tv"></i> <span>Devices</span></a></li>
         <li><a href="/admin/controladores"><i class="fa fa-cubes"></i> <span>Controladores</span></a></li>
+        <li><a href="/admin/comandos"><i class="fa fa-rss"></i> <span>Comandos</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">

@@ -69,9 +69,6 @@ $app->get("/admin/user/{iduser}",function($request,$response,$args){
 
 	$page->setTpl("users-update",array(
 		"user"=>$user->getValues(),
-		"places"=>$places,
-		"placesRelated"=>$user->getPlaces(),
-		"placesNotRelated"=>$user->getPlaces(false)
 	));
 	
 });
@@ -175,6 +172,29 @@ $app->get('/admin/user/{iduser}/delete',function($req,$res,$args){
 	exit;
 });
 
+$app->get('/admin/user/{iduser}/addPlaces',function($req,$res,$args){
+
+	$user = User::verifyLogin();
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/user/");
+
+
+	$iduser=$args['iduser'];
+
+	$user = new User();
+	$user->get((int)$iduser);
+
+
+	$page->setTpl("user-places",[
+		"user"=>$user->getValues(),
+		"placesRelated"=>$user->getPlaces(),
+		"placesNotRelated"=>$user->getPlaces(false)
+	]);
+
+
+});
+
+
 
 $app->get('/admin/user/{iduser}/addPlace/{idplace}',function($req,$res,$args){
 
@@ -188,7 +208,7 @@ $app->get('/admin/user/{iduser}/addPlace/{idplace}',function($req,$res,$args){
 
 	$user->addPlace((int)$idplace);
 
-	header("Location: /admin/user/".$iduser);
+	header("Location: /admin/user/".$iduser."/addPlaces");
 	exit;
 });
 
@@ -204,7 +224,7 @@ $app->get('/admin/user/{iduser}/removePlace/{idplace}',function($req,$res,$args)
 
 	$user->removePlace((int)$idplace);
 
-	header("Location: /admin/user/".$iduser);
+	header("Location: /admin/user/".$iduser."/addPlaces");
 	exit;
 });
 

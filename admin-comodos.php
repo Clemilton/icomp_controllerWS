@@ -15,7 +15,7 @@ $app->get("/admin/places/{idplace}/comodos",function($req,$res,$args){
 
 	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
 							,$tpl_dir="/views/admin/comodos/");
-	
+
 	$place = new Place();
 	$place->get((int)$idplace);
 

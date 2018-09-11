@@ -37,6 +37,8 @@ require_once('admin-devices.php');
 
 require_once('admin-controladores.php');
 
+require_once('admin-comandos.php');
+
 require_once('rest-api.php');
 
 $app->run();

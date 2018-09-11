@@ -16,5 +16,15 @@ $app->get("/api/getComodosPlace/{idPlace}",function($req,$res,$args){
 	return json_encode($comodos);
 });
 
+$app->get("/api/getDevices",function(){
+	User::verifyLogin();
+
+	$sql = new Sql();
+
+	$devices = $sql->select("SELECT * FROM devices");
+
+	return json_encode($devices);
+
+});
 
 ?>
