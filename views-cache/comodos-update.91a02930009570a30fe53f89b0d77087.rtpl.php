@@ -31,6 +31,11 @@
               <input type="text" class="form-control" id="name" name="name" placeholder="Digite o nome" value="<?php echo htmlspecialchars( $comodo["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
 
+            <div class="form-group">
+              <label for="nick_mqtt">Nick MQTT</label>
+              <input type="text" class="form-control" id="nick_mqtt" name="nick_mqtt" placeholder="Digite o nome" value="<?php echo htmlspecialchars( $comodo["nick_mqtt"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+            </div>
+
           </div>
           <!-- /.box-body -->
           <div class="box-footer">

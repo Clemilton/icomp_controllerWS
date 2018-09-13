@@ -16,12 +16,13 @@ class Device extends Model{
 	public function save(){
 		$sql = new Sql();
 		$sql->query("
-			INSERT INTO devices (name,mark,model,interface)
-			VALUES (:name,:mark,:model,:interface);
+			INSERT INTO devices (name,mark,model,interface,nick_mqtt)
+			VALUES (:name,:mark,:model,:interface,:nick_mqtt);
 		",[
 			":name"=>$this->getname(),
 			":mark"=>$this->getmark(),
 			":model"=>$this->getmodel(),
+			":nick_mqtt"=>$this->getnick_mqtt(),
 			":interface"=>$this->getinterface()
 		]);
 	}
@@ -39,16 +40,25 @@ class Device extends Model{
 	public function update(){
 
 		$sql = new Sql();
+		$code=0;
+		try{
+			$sql->query("
+				UPDATE devices
+				SET name=:name,mark=:mark, model=:model,nick_mqtt=:nick_mqtt
+				WHERE id=:id",[
+				":name"=>$this->getname(),
+				":mark"=>$this->getmark(),
+				":model"=>$this->getmodel(),
+				":nick_mqtt"=>$this->getnick_mqtt(),
+				":id"=>$this->getid()
+			]);
+		}catch(\PDOException $Exception ){
+			
+			return (int)$Exception->getCode();
 
-		$sql->query("
-			UPDATE devices
-			SET name=:name,mark=:mark, model=:model
-			WHERE id=:id",[
-			":name"=>$this->getname(),
-			":mark"=>$this->getmark(),
-			":model"=>$this->getmodel(),
-			":id"=>$this->getid()
-		]);
+
+		}
+		return $code;
 	}
 
 	public function delete($id){

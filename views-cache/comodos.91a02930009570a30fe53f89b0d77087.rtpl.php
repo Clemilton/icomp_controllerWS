@@ -30,10 +30,12 @@
 									</tr>
 								</thead>
 								<tbody>
+									<?php $i=1; ?>
+
 									<?php $counter1=-1;  if( isset($comodos) && ( is_array($comodos) || $comodos instanceof Traversable ) && sizeof($comodos) ) foreach( $comodos as $key1 => $value1 ){ $counter1++; ?>
 
 									<tr>
-										<td><?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+										<td><?php echo htmlspecialchars( $i, ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 										<td><?php echo htmlspecialchars( $value1["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 										
 										<td>
@@ -47,6 +49,8 @@
 
 									</td>
 								</tr>
+								<?php $i=$i+1; ?>
+
 								<?php } ?>
 
 							</tbody>

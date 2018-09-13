@@ -23,12 +23,13 @@ class Place extends Model{
 
 		$sql = new Sql();
 
-		$sql->query("INSERT INTO places (name,floor,endereco,bairro)
-					 VALUES (:name,:floor,:endereco,:bairro)",[
+		$sql->query("INSERT INTO places (name,floor,endereco,bairro,nick_mqtt)
+					 VALUES (:name,:floor,:endereco,:bairro,:nick_mqtt)",[
 			":name"=>$this->getname(),
 			":floor"=>(int)$this->getfloor(),
 			":endereco"=>$this->getendereco(),
-			":bairro"=>$this->getbairro()
+			":bairro"=>$this->getbairro(),
+			":nick_mqtt"=>$this->getnick_mqtt()
 		]);
 	}
 
@@ -49,12 +50,13 @@ class Place extends Model{
 
 		$sql->query("
 			UPDATE places
-			SET name=:name, floor=:floor, endereco=:endereco,bairro=:bairro
+			SET name=:name, floor=:floor, endereco=:endereco,bairro=:bairro,nick_mqtt=:nick_mqtt
 			WHERE id=:id",[
 			":name"=>$this->getname(),
 			":floor"=>(int)$this->getfloor(),
 			":endereco"=>$this->getendereco(),
 			":bairro"=>$this->getbairro(),
+			":nick_mqtt"=>$this->getnick_mqtt(),
 			":id"=>$this->getid()
 		]);
 	}
@@ -66,7 +68,7 @@ class Place extends Model{
 
 		$sql->query("DELETE FROM places  WHERE id=:id;",[
 			":id"=>$id
-		]);
+		]);	
 
 	}
 

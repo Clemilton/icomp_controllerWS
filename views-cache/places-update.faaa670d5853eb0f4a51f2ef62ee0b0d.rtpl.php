@@ -40,6 +40,11 @@
               <label for="bairro">Bairro</label>
               <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Digite o bairro" value="<?php echo htmlspecialchars( $place["bairro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
+
+            <div class="form-group">
+              <label for="nick_mqtt">Nick Mqtt</label>
+              <input type="text" class="form-control" id="nick_mqtt" name="nick_mqtt" placeholder="Digite o nick" value="<?php echo htmlspecialchars( $place["nick_mqtt"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+            </div>
             
 
 

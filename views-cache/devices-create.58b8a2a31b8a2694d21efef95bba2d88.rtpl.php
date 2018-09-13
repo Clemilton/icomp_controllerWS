@@ -44,7 +44,10 @@
                 <option value="serial">Url</option>
               </select>
             </div>
-
+            <div class="form-group">
+              <label for="nick_mqtt">Nick Mqtt</label>
+              <input type="tel" class="form-control" id="nick_mqtt" name="nick_mqtt" placeholder="Digite o nick">
+            </div>
           </div>
           <!-- /.box-body -->
           <div class="box-footer">

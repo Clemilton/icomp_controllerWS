@@ -54,20 +54,34 @@ $app->get('/admin/devices/{iddevice}',function($req,$res,$args){
 	$device->get($iddevice);
 
 	$page->setTpl("devices-update",[
-		"device"=>$device->getValues()
+		"device"=>$device->getValues(),
+		"error"=>""
 	]);
 	
 });
 
 $app->post('/admin/devices/{iddevice}',function($req,$res,$args){
-	User::verifyLogin();
+	$user = User::verifyLogin();
 
 	$iddevice = (int)$args['iddevice'];
 
 	$device = new Device();
 	$device->setid($iddevice);
 	$device->setData($_POST);
-	$device->update();
+	$code = $device->update();
+
+	if($code!=0){
+		$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/devices/");
+
+		$device = new Device();
+		$device->get($iddevice);
+		$page->setTpl("devices-update",[
+			"device"=>$device->getValues(),
+			"error"=>"A nick_mqtt já está sendo utilizado"
+		]);
+		exit;
+	}
 
 	header("Location: /admin/devices");
 	exit;

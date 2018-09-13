@@ -19,6 +19,18 @@
       <div class="box box-success">
         <div class="box-header with-border">
           <h3 class="box-title">Atualizar Device</h3>
+          <?php if( $error != '' ){ ?>
+
+        
+                  <div class="alert alert-danger alert-dismissible " align="center" >
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+        <?php } ?>
+
         </div>
         <!-- /.box-header -->
         <!-- form start -->
@@ -40,9 +52,11 @@
               <label for="interface">Interface</label>
               <select class="form-control" name="interface" style="margin-bottom: 10px" disabled="">
                 <option value="<?php echo htmlspecialchars( $device["interface"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $device["interface"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                
-
               </select>
+            </div>
+            <div class="form-group">
+              <label for="nick_mqtt">Nick Mqtt</label>
+              <input type="tel" class="form-control" id="nick_mqtt" name="nick_mqtt" placeholder="Digite o nick" value="<?php echo htmlspecialchars( $device["nick_mqtt"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
 
           </div>

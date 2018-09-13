@@ -29,16 +29,11 @@ $app->get('/admin/places/create',function(){
 });
 
 $app->post('/admin/places/create',function(){
-	
+
 	User::verifyLogin();
-
-	$places = new Place();
-
-	
-    $places->setData($_POST);
-
-
-    $places->save();
+	$place = new Place();
+    $place->setData($_POST);
+    $place->save();
 
     header("Location: /admin/places");
     exit;

@@ -29,14 +29,17 @@
                 </tr>
               </thead>
               <tbody>
+                {$i=1}
                 {loop="$placesNotRelated"}
                 <tr>
-                  <td>{$value.id}</td>
+
+                  <td>{$i}</td>
                   <td>{$value.name}</td>
                    <td>
                       <a href="/admin/user/{$user.id}/addPlace/{$value.id}" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-right"></i> Adicionar</a>
                     </td>
                 </tr>
+                {$i=$i+1}
                 {/loop}
               </tbody>
             </table>
@@ -59,14 +62,16 @@
                 </tr>
               </thead>
               <tbody>
+                {$i=1}
                 {loop="$placesRelated"}
                 <tr>
-                  <td>{$value.id}</td>
+                  <td>{$i}</td>
                   <td>{$value.name}</td>
                    <td>
                       <a href="/admin/user/{$user.id}/removePlace/{$value.id}" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-left"></i> Remover</a>
                     </td>
                 </tr>
+                {$i=$i+1}
                 {/loop}
               </tbody>
             </table>

@@ -30,10 +30,12 @@
 									</tr>
 								</thead>
 								<tbody>
+									<?php $i=1; ?>
+
 									<?php $counter1=-1;  if( isset($users) && ( is_array($users) || $users instanceof Traversable ) && sizeof($users) ) foreach( $users as $key1 => $value1 ){ $counter1++; ?>
 
 									<tr>
-										<td><?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+										<td><?php echo htmlspecialchars( $i, ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 										<td><?php echo htmlspecialchars( $value1["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 										<td><?php echo htmlspecialchars( $value1["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 										<td><?php echo htmlspecialchars( $value1["username"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
@@ -46,6 +48,8 @@
 
 									</td>
 								</tr>
+								<?php $i=$i+1; ?>
+
 								<?php } ?>
 
 							</tbody>

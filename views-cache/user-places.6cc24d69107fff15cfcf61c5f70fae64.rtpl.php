@@ -29,15 +29,20 @@
                 </tr>
               </thead>
               <tbody>
+                <?php $i=1; ?>
+
                 <?php $counter1=-1;  if( isset($placesNotRelated) && ( is_array($placesNotRelated) || $placesNotRelated instanceof Traversable ) && sizeof($placesNotRelated) ) foreach( $placesNotRelated as $key1 => $value1 ){ $counter1++; ?>
 
                 <tr>
-                  <td><?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+
+                  <td><?php echo htmlspecialchars( $i, ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                   <td><?php echo htmlspecialchars( $value1["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                    <td>
                       <a href="/admin/user/<?php echo htmlspecialchars( $user["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/addPlace/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-right"></i> Adicionar</a>
                     </td>
                 </tr>
+                <?php $i=$i+1; ?>
+
                 <?php } ?>
 
               </tbody>
@@ -61,15 +66,19 @@
                 </tr>
               </thead>
               <tbody>
+                <?php $i=1; ?>
+
                 <?php $counter1=-1;  if( isset($placesRelated) && ( is_array($placesRelated) || $placesRelated instanceof Traversable ) && sizeof($placesRelated) ) foreach( $placesRelated as $key1 => $value1 ){ $counter1++; ?>
 
                 <tr>
-                  <td><?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                  <td><?php echo htmlspecialchars( $i, ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                   <td><?php echo htmlspecialchars( $value1["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                    <td>
                       <a href="/admin/user/<?php echo htmlspecialchars( $user["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/removePlace/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-left"></i> Remover</a>
                     </td>
                 </tr>
+                <?php $i=$i+1; ?>
+
                 <?php } ?>
 
               </tbody>

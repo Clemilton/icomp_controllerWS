@@ -22,10 +22,11 @@ class Comodo extends Model{
 
 		$sql = new Sql();
 
-		$sql->query("INSERT INTO comodos (name,id_places)
-					 VALUES (:name,:id_places)",[
+		$sql->query("INSERT INTO comodos (name,id_places,nick_mqtt)
+					 VALUES (:name,:id_places,:nick_mqtt)",[
 			":name"=>$this->getname(),
-			":id_places"=>(int)$this->getid_places()
+			":id_places"=>(int)$this->getid_places(),
+			":nick_mqtt"=>$this->getnick_mqtt()
 		]);
 	}
 
@@ -44,10 +45,11 @@ class Comodo extends Model{
 
 		$sql->query("
 			UPDATE comodos
-			SET name=:name, id_places=:id_places
+			SET name=:name, id_places=:id_places,nick_mqtt=:nick_mqtt
 			WHERE id=:id",[
 		":name"=>$this->getname(),
 		":id_places"=>$this->getid_places(),
+		":nick_mqtt"=>$this->getnick_mqtt(),
 		":id"=>$this->getid()
 		]);
 	}
@@ -112,12 +114,33 @@ class Comodo extends Model{
 	public function addDevice($iddevice){
 	
 		$sql = new Sql();
+		//Montando o topico a ser utilizado no MQTT
+		$nickDevice = $sql->select("
+			SELECT a.nick_mqtt FROM devices a WHERE id=:id",[
+			":id"=>$iddevice]
+		)[0]["nick_mqtt"];
+
+		$comodo = $sql->select("
+			SELECT * FROM comodos a WHERE id=:id",[
+			":id"=>$this->getid()
+		])[0];
+		$nickComodo = $comodo["nick_mqtt"];
+		$id_place = $comodo["id_places"];
+
+		$nickPlace = $sql->select("
+			SELECT a.nick_mqtt FROM places a WHERE id=:id",[
+			":id"=>$id_place
+		])[0]["nick_mqtt"];
+
+		$topic = "/".$nickPlace."/".$nickComodo."/".$nickDevice;
+		
 		$sql->query("
-			INSERT INTO comodos_device (devices_id,comodos_id)
-			VALUES (:devices_id,:comodos_id);
+			INSERT INTO comodos_device (devices_id,comodos_id,topic)
+			VALUES (:devices_id,:comodos_id,:topic);
 		",[
 			":devices_id"=>(int)$iddevice,
-			":comodos_id"=>(int)$this->getid()
+			":comodos_id"=>(int)$this->getid(),
+			":topic"=>$topic
 		]);
 	}
 	public function removeDevice($iddevice){

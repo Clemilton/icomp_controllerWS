@@ -28,14 +28,16 @@
                 </tr>
               </thead>
               <tbody>
+                {$i=1}
                 {loop="$devicesNotRelated"}
                 <tr>
-                  <td>{$value.id}</td>
+                  <td>{$i}</td>
                   <td>{$value.name}</td>
                    <td>
                       <a href="/admin/comodos/{$comodo.id}/devices/{$value.id}/addDevice" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-right"></i> Adicionar</a>
                     </td>
                 </tr>
+                {$i=$i+1}
                 {/loop}
               </tbody>
             </table>
@@ -58,14 +60,16 @@
                 </tr>
               </thead>
               <tbody>
+                {$i=1}
                 {loop="$devicesRelated"}
                 <tr>
-                  <td>{$value.id}</td>
+                  <td>{$i}</td>
                   <td>{$value.name}</td>
                    <td>
                       <a href="/admin/comodos/{$comodo.id}/devices/{$value.id}/removeDevice" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-left"></i> Remover</a>
                     </td>
                 </tr>
+                {$i=$i+1}
                 {/loop}
               </tbody>
             </table>

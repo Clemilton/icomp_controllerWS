@@ -29,15 +29,19 @@
                 </tr>
               </thead>
               <tbody>
+                <?php $i=1; ?>
+
                 <?php $counter1=-1;  if( isset($devicesNotRelated) && ( is_array($devicesNotRelated) || $devicesNotRelated instanceof Traversable ) && sizeof($devicesNotRelated) ) foreach( $devicesNotRelated as $key1 => $value1 ){ $counter1++; ?>
 
                 <tr>
-                  <td><?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                  <td><?php echo htmlspecialchars( $i, ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                   <td><?php echo htmlspecialchars( $value1["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                    <td>
                       <a href="/admin/comodos/<?php echo htmlspecialchars( $comodo["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/devices/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/addDevice" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-right"></i> Adicionar</a>
                     </td>
                 </tr>
+                <?php $i=$i+1; ?>
+
                 <?php } ?>
 
               </tbody>
@@ -61,15 +65,19 @@
                 </tr>
               </thead>
               <tbody>
+                <?php $i=1; ?>
+
                 <?php $counter1=-1;  if( isset($devicesRelated) && ( is_array($devicesRelated) || $devicesRelated instanceof Traversable ) && sizeof($devicesRelated) ) foreach( $devicesRelated as $key1 => $value1 ){ $counter1++; ?>
 
                 <tr>
-                  <td><?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                  <td><?php echo htmlspecialchars( $i, ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                   <td><?php echo htmlspecialchars( $value1["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                    <td>
                       <a href="/admin/comodos/<?php echo htmlspecialchars( $comodo["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/devices/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/removeDevice" class="btn btn-primary btn-xs pull-right"><i class="fa fa-arrow-left"></i> Remover</a>
                     </td>
                 </tr>
+                <?php $i=$i+1; ?>
+
                 <?php } ?>
 
               </tbody>

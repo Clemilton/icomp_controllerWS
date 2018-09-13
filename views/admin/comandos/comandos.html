@@ -20,7 +20,7 @@
       				<select id="selDevice" class="form-control" name="places_id" style="margin-bottom: 10px">
         				<option value="0"> </option>
         				{loop="$devices"}
-        					<option value="{$value.id}">{$value.name}</option>
+        					<option value="{$value.id}" >{$value.name}</option>
         				{/loop}
       				</select>
 						</div>
@@ -32,91 +32,81 @@
 
 		<div class="row">
 			<div class="col-md-12">
-				<div class="box box-primary" style="display: none" id="box">
-					<div class="box-header with-border	">
-						<h2 class="box-title" id="titleDevice">Ola</h2>
+				<div class="box box-primary">
+					<div class="box-header">
+						<a href="#" class="btn btn-success" id="btnCreate"> Cadastrar Comando</a>
+
+						<div class="box-body no-padding">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th style="width: 10px">#</th>
+										<th>Comando</th>
+										<th>Type</th>
+										<th>Nome Device</th>
+										<th style="width: 300px">&nbsp;</th>
+									</tr>
+								</thead>
+								<tbody id="bodyTable">
+									
+							</tbody>
+						</table>
 					</div>
-					<form role="form" action="" method="post" id="form">
-						<div class="box-body ">
-							
-							<div class="form-group">
-            		<label for="name">Nome</label>
-            		<input type="text" class="form-control" id="name" name="name" placeholder="Digite o nome do comando">
-          		</div>
-
-          		<div class="form-group">
-            		<label for="name">Selecione o tipo</label>
-            		<select class="form-control" id="selType" name="type">
-            			<option value="0"></option>
-            			<option value="ircode">Infravermelho</option>
-            			<option value="serial">Serial</option>
-            			<option value="url">URL</option>
-            		</select>
-          		</div>
-
-          		<div id="fieldsComands" style="display:none">
-          			<div class="form-group">
-            			<label for="name">Descrição</label>
-            			<input type="text" class="form-control" id="description" name="description" placeholder="Digite a descrição do Comando">
-          			</div>
-
-          			<div class="form-group" style="" id="typeIR">
-            			<label for="name">Protoloco</label>
-            			<select class="form-control" id="protocol" name="protocol">
-            				<option value="nec">NEC</option>
-            				<option value="sony">SONY</option>
-            				<option value="rc5">RC5</option>
-            				<option value="rc6">RC6</option>
-            				<option value="samsung">SAMSUNG</option>
-            				<option value="raw">RAW</option>
-            			</select>
-          			</div>
-          		</div>
-
-
-
-            </div>
-					</form>
-							
 				</div>
 			</div>
 		</div>
+	</div>
+
+
+
 
 		<script type="text/javascript">
 			var selDevice = document.getElementById('selDevice');
 			selDevice.onclick = function(){
-				$('#form')[0].reset();
 				opts = selDevice.options;
         option = opts[selDevice.selectedIndex];
-        
         if(option.value==0){
-        	$('#box').css("display","none");
-        	$('#fieldsComands').css("display","none");
+        	$("#btnCreate").attr('href','#');
         }else{
-	        $('#box').css("display","");
-	        $('#titleDevice').text("Comando("+option.text+")");
-	        $('#form').attr('action', '/admin/comandos/create/'+option.value);
-	        $('#fieldsComands').css("display","none");
-      	}
+        	$('#btnCreate').attr('href','/admin/comandos/create/'+option.value);
+        }
+        route = document.location.origin+"/api/getComandsDevice/"+option.value;
+
+        console.log(route);
+        $.get(route,function(comandos){
+        	
+        	$('#bodyTable').html('');
+        	json_comandos = JSON.parse(comandos);
+        	console.log(json_comandos);
+        	for (var i = 0 ; i< json_comandos.length ; i++){
+ 						var j=i+1;
+        		$("#bodyTable").append( "<tr id=tr"+json_comandos[i].id+"></tr>" );
+
+        		$("#tr"+json_comandos[i].id).append("<td>"+j+"</td>");
+        		$("#tr"+json_comandos[i].id).append("<td>"+json_comandos[i].comando+"</td>");
+        		$("#tr"+json_comandos[i].id).append("<td>"+json_comandos[i].type+"</td>");
+        		$("#tr"+json_comandos[i].id).append("<td>"+json_comandos[i].nome+"</td>");
+
+        		var x = $("<td></td>");
+        		var editar = $("<a class='btn btn-primary btn-xs' > <i class='fa fa-edit'></i> Editar</a>");
+        		var remover = $("<a class='btn btn-danger btn-xs' > <i class='fa fa-trash'></i>Remover</a>");
+        		editar.css("margin",1);
+        		remover.css("margin",1);
+        		remover.click(function(){
+        			return confirm('Deseja excluir esse comando?');
+        		});
+        		editar.attr("href", "/admin/comandos/"+json_comandos[i].id+"/update");
+        		remover.attr("href", "#");
+        		
+        		x.append(editar)
+        		x.append(remover);
+        		$("#tr"+json_comandos[i].id).append(x);        		 
+
+        	}
+        });
+
 			}
 
-			var selType  = document.getElementById('selType');
-
-			selType.onclick = function(){
-
-				opts = selType.options;
-				option = opts[selType.selectedIndex];
-				if(option.value==='0'){
-					$('#fieldsComands').css("display","none");
-					console.log('OI');
-				}else if (option.value=='ircode'){
-					$('#fieldsComands').css("display","");
-				}else{
-					$('#fieldsComands').css("display","");
-					$('#typeIR').css("display","none");
-				}
-				
-			}
 
 
 

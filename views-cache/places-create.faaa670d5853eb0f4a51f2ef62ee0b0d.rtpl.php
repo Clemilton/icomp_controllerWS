@@ -41,6 +41,11 @@
               <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Digite o bairro">
             </div>
 
+            <div class="form-group">
+              <label for="nick_mqtt">Nick Mqtt</label>
+              <input type="text" class="form-control" id="nick_mqtt" name="nick_mqtt" placeholder="Digite o nick">
+            </div>
+
           </div>
           <!-- /.box-body -->
           <div class="box-footer">

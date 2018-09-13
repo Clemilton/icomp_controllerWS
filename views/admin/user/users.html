@@ -30,9 +30,10 @@
 									</tr>
 								</thead>
 								<tbody>
+									{$i=1}
 									{loop="$users"}
 									<tr>
-										<td>{$value.id}</td>
+										<td>{$i}</td>
 										<td>{$value.desname}</td>
 										<td>{$value.email}</td>
 										<td>{$value.username}</td>
@@ -45,6 +46,7 @@
 
 									</td>
 								</tr>
+								{$i=$i+1}
 								{/loop}
 							</tbody>
 						</table>
