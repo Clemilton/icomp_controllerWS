@@ -75,8 +75,7 @@ $app->get("/admin/user/{iduser}",function($request,$response,$args){
 
 $app->post("/admin/user/{iduser}",function($req,$res,$args){
 
-	var_dump($_POST);
-	exit;
+
 	$iduser = $args['iduser'];
 
 	User::verifyLogin();

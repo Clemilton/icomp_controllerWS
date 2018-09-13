@@ -16,6 +16,7 @@ $app->get("/api/getComodosPlace/{idPlace}",function($req,$res,$args){
 	return json_encode($comodos);
 });
 
+//Retorna todos os devices
 $app->get("/api/getDevices",function(){
 	User::verifyLogin();
 
@@ -26,7 +27,7 @@ $app->get("/api/getDevices",function(){
 	return json_encode($devices);
 
 });
-
+//Retorna os comandos do Device(device_id)
 $app->get("/api/getComandsDevice/{devices_id}",function($req,$res,$args){
 
 	User::verifyLogin();
@@ -35,7 +36,7 @@ $app->get("/api/getComandsDevice/{devices_id}",function($req,$res,$args){
 	$sql = new Sql();
 
 	$comands = $sql->select("
-		SELECT  a.id,a.name as comando, a.type, b.name as nome
+		SELECT  a.id,a.name as comando, b.interface, b.name as nome
 		FROM comands a 
 		INNER JOIN devices AS b ON a.devices_id=b.id
 		WHERE a.devices_id=:devices_id",[
@@ -46,6 +47,19 @@ $app->get("/api/getComandsDevice/{devices_id}",function($req,$res,$args){
 	
 
 	return json_encode($comands);
+
+});
+
+//Retorna a Lista de protocolos infravermelhos
+$app->get("/api/getIrProtocols",function($req,$res,$args){
+
+	User::verifyLogin();
+
+	$sql = new Sql();
+
+	$protocols = $sql->select("SELECT * FROM irprotocols");
+
+	return json_encode($protocols);
 
 });
 

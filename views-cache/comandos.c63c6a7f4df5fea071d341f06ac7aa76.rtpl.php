@@ -44,14 +44,14 @@
 									<tr>
 										<th style="width: 10px">#</th>
 										<th>Comando</th>
-										<th>Type</th>
 										<th>Nome Device</th>
+										<th>Interface</th>
 										<th style="width: 300px">&nbsp;</th>
 									</tr>
 								</thead>
 								<tbody id="bodyTable">
 									
-							</tbody>
+								</tbody>
 						</table>
 					</div>
 				</div>
@@ -86,8 +86,8 @@
 
         		$("#tr"+json_comandos[i].id).append("<td>"+j+"</td>");
         		$("#tr"+json_comandos[i].id).append("<td>"+json_comandos[i].comando+"</td>");
-        		$("#tr"+json_comandos[i].id).append("<td>"+json_comandos[i].type+"</td>");
         		$("#tr"+json_comandos[i].id).append("<td>"+json_comandos[i].nome+"</td>");
+        		$("#tr"+json_comandos[i].id).append("<td>"+json_comandos[i].type+"</td>");
 
         		var x = $("<td></td>");
         		var editar = $("<a class='btn btn-primary btn-xs' > <i class='fa fa-edit'></i> Editar</a>");

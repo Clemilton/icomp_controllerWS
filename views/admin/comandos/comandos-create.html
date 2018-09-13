@@ -37,35 +37,31 @@
               </select>
             </div>
 
-            <div class="form-group">
-              <label for="name">Device</label>
-              <select name="devices_id" class="form-control">
-              	<option value="{$device.id}">{$device.name}</option>
-              </select>
-            </div>
+        
 
             <div class="form-group">
-              <label for="name">Comando IR</label>
-              <input type="text" class="form-control" id="value" name="value" placeholder="Digite o comando IR">
+              <label for="name">Comando</label>
+              <input type="text" class="form-control" id="value" name="value" placeholder="Digite o comando">
             </div>
-
+            {$type=$device.interface}
+            {if="$type=='ircode'"}
             <div class="form-group">
               <label for="name">Protocolo</label>
-              <select name="protocol" class="form-control">
-              	<option value="nec">NEC</option>
-              	<option value="sony">SONY</option>
-              	<option value="rc5">rc5</option>
-              	<option value="rc6">rc6</option>
-              	<option value="samsung">SAMSUNG</option>
-              	<option value="raw">RAW DATA</option>
+              <select name="protocol" class="form-control" id="selProtocols">
+              	
               </select>
             </div>
-
+            
             <div class="form-group">
               <label for="name">Bits</label>
               <input type="number" class="form-control" id="bits" name="bits" placeholder="Digite a quantidade de bits">
             </div>
 
+            <div class="form-group">
+              <label for="tam_rawdata">Tamanho RAW DATA</label>
+              <input type="number" class="form-control" id="tam_rawdata" name="tam_rawdata" placeholder="Digite o tamanho do raw data">
+            </div>
+            {/if}
 
 
           </div>
@@ -74,6 +70,24 @@
             <button type="submit" class="btn btn-success">Cadastrar</button>
           </div>
         </form>
+
+        <script type="text/javascript">
+          
+          
+          window.onload = function(){
+
+            route = document.location.origin+"/api/getIrProtocols";
+            $.get(route,function(protocolos){
+              var sel = $('#selProtocols');
+              console.log(sel);
+              json_p = JSON.parse(protocolos);
+              for(var i = 0 ; i < json_p.length ; i++){
+                sel.append('<option value=' + json_p[i].id + '>' + json_p[i].name + '</option>');
+                console.log(i)
+              }
+            });
+          }
+        </script>
       </div>
     </div>
   </div>

@@ -25,10 +25,11 @@ $app->get('/admin/comandos/create/{iddevice}',function($req,$res,$args){
 
 	$iddevice = (int)$args['iddevice'];
 
-	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
-							,$tpl_dir="/views/admin/comandos/");
 	$device = new Device();
 	$device->get($iddevice);
+
+	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
+							,$tpl_dir="/views/admin/comandos/");
 
 	$page->setTpl("comandos-create",[
 		"device"=>$device->getValues()
