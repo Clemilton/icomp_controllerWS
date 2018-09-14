@@ -83,11 +83,11 @@
         	for (var i = 0 ; i< json_comandos.length ; i++){
  						var j=i+1;
         		$("#bodyTable").append( "<tr id=tr"+json_comandos[i].id+"></tr>" );
-
+        		
         		$("#tr"+json_comandos[i].id).append("<td>"+j+"</td>");
         		$("#tr"+json_comandos[i].id).append("<td>"+json_comandos[i].comando+"</td>");
         		$("#tr"+json_comandos[i].id).append("<td>"+json_comandos[i].nome+"</td>");
-        		$("#tr"+json_comandos[i].id).append("<td>"+json_comandos[i].type+"</td>");
+        		$("#tr"+json_comandos[i].id).append("<td>"+json_comandos[i].interface+"</td>");
 
         		var x = $("<td></td>");
         		var editar = $("<a class='btn btn-primary btn-xs' > <i class='fa fa-edit'></i> Editar</a>");

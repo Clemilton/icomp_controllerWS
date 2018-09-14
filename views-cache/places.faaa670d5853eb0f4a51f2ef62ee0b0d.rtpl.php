@@ -44,7 +44,7 @@
 											<a href="/admin/places/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
 										
 											<a href="/admin/places/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" class="btn btn-danger btn-xs" onclick="return confirm('Deseja realmente excluir esse usuário?')"><i class="fa fa-trash"></i>Excluir</a>
-											<a href="/admin/places/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/comodos" class="btn btn-default btn-xs"><i class="fa fa-hotel"></i>Comodos</a>
+											
 
 									</td>
 								</tr>

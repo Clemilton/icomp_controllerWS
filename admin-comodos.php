@@ -5,28 +5,27 @@ use \Icomp\Model\Place;
 use \Icomp\Model\User;
 use \Icomp\Model\Comodo;
 
-$app->get("/admin/places/{idplace}/comodos",function($req,$res,$args){
+
+$app->get("/admin/comodos",function(){
 
 	$user = User::verifyLogin();
 
-	$idplace = $args['idplace'];
+	$places = Place::listAll();
 
-	$comodos = Comodo::listAll($idplace);
 
 	$page  = new PageAdmin($opts=["data"=>["user"=>$user]]
 							,$tpl_dir="/views/admin/comodos/");
 
-	$place = new Place();
-	$place->get((int)$idplace);
-
 	$page->setTpl("comodos",[
-		'place'=>$place->getValues(),
-		'comodos'=>$comodos
+		'places'=>$places
 	]);
+
 
 });
 
-$app->get("/admin/places/{idplace}/comodos/create",function($req,$res,$args){
+
+
+$app->get("/admin/comodos/create/{idplace}",function($req,$res,$args){
 
 	$user = User::verifyLogin();
 
@@ -45,7 +44,7 @@ $app->get("/admin/places/{idplace}/comodos/create",function($req,$res,$args){
 
 });
 
-$app->post("/admin/places/{idplace}/comodos/create",function($req,$res,$args){
+$app->post("/admin/comodos/create/{idplace}",function($req,$res,$args){
 
 	$user = User::verifyLogin();
 
@@ -59,11 +58,11 @@ $app->post("/admin/places/{idplace}/comodos/create",function($req,$res,$args){
 
 	$comodo->save();
 	
-	header("Location: /admin/places/".$idplace."/comodos");
+	header("Location: /admin/comodos");
 	exit;
 });
 
-$app->get("/admin/places/{idplace}/comodos/{idcomodo}",function($req,$res,$args){
+$app->get("/admin/comodos/{idcomodo}/place/{idplace}",function($req,$res,$args){
 
 	$user = User::verifyLogin();
 	$idplace = $args['idplace'];
@@ -84,7 +83,7 @@ $app->get("/admin/places/{idplace}/comodos/{idcomodo}",function($req,$res,$args)
 
 });
 
-$app->post("/admin/places/{idplace}/comodos/{idcomodo}",function($req,$res,$args){
+$app->post("/admin/comodos/{idcomodo}/place/{idplace}",function($req,$res,$args){
 
 	User::verifyLogin();
 	
@@ -95,31 +94,32 @@ $app->post("/admin/places/{idplace}/comodos/{idcomodo}",function($req,$res,$args
 
 	$comodo->update();
 
-	header("Location: /admin/places/".$args['idplace']."/comodos");
+	header("Location: /admin/comodos");
 	exit;
 
 });
 
-$app->get("/admin/places/{idplace}/comodos/{idcomodo}/delete",function($req,$res,$args){
+$app->get("/admin/comodos/delete/{idcomodo}",function($req,$res,$args){
 
 	User::verifyLogin();
-	$idplace=$args['idplace'];
+	$idcomodo  = $args['idcomodo'];
 
 	$comodo = new Comodo();
 	$comodo->get((int)$idcomodo);
 
-	$comodo->delete((int)$args['idcomodo']);
+	$comodo->delete();
 
-	header("Location: /admin/places/".$idplace."/comodos");
+	header("Location: /admin/comodos");
 	exit;
+
 
 });
 
-$app->get("/admin/places/{idplace}/comodos/{idcomodo}/devices",function($req,$res,$args){
+$app->get("/admin/comodos/{idcomodo}/devices",function($req,$res,$args){
 
 	$user=User::verifyLogin();
 	$idcomodo = $args['idcomodo'];
-	$idplace = $args['idplace'];
+	
 
 	$comodo = new Comodo();
 	$comodo->get((int)$idcomodo);
@@ -132,8 +132,7 @@ $app->get("/admin/places/{idplace}/comodos/{idcomodo}/devices",function($req,$re
 	$page->setTpl("comodos-device",[
 		"comodo"=>$comodo->getValues(),
 		"devicesRelated" => $comodo->getDevices(),
-		"devicesNotRelated" => $comodo->getDevices(false),
-		"idplace" => $idplace
+		"devicesNotRelated" => $comodo->getDevices(false)
 	]);
 
 });
@@ -151,8 +150,7 @@ $app->get("/admin/comodos/{idcomodo}/devices/{iddevice}/addDevice",function($req
 
 	$comodo->addDevice((int)$iddevice);
 
-	header("Location: /admin/places/".$comodo->getid_places()."/comodos/".
-			$idcomodo."/devices");
+	header("Location: /admin/comodos/".$idcomodo."/devices");
 	exit;
 });
 
@@ -167,8 +165,7 @@ $app->get("/admin/comodos/{idcomodo}/devices/{iddevice}/removeDevice",function($
 	$comodo->setid((int)$idcomodo);
 	$comodo->removeDevice((int)$iddevice);
 
-	header("Location: /admin/places/".$comodo->getid_places()."/comodos/".
-			$idcomodo."/devices");
+	header("Location: /admin/comodos/".$idcomodo."/devices");
 	exit;
 });
 

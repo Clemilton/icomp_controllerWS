@@ -39,11 +39,13 @@ $app->get('/admin/comandos/create/{iddevice}',function($req,$res,$args){
 $app->post('/admin/comandos/create/{iddevice}',function($req,$res,$args){
 
 	User::verifyLogin();
+
 	$iddevice = (int)$args['iddevice'];
 
 	$comando = new Comando();
 	$comando->setData($_POST);
-
+	$comando->setdevices_id($iddevice);
+	
 	$comando->save();
 
 	header("Location: /admin/comandos");

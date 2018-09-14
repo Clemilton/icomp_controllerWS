@@ -20,13 +20,13 @@ class Comando extends Model{
 		if($this->gettype()=='ircode'){
 			$sql->query("
 
-				CALL sp_insert_command_ir(:name,:type,:devices_id,:value,:protocol,:bits)",[
+			CALL sp_insert_command_ir(:name,:devices_id,:value,:protocol,:bits,:tam_rawdata)",[
 				":name"=>$this->getname(),
-				":type"=>$this->gettype(),
-				":devices_id"=>(int)$this->getdevices_id(),
+				":devices_id"=>$this->getdevices_id(),
 				":value"=>$this->getvalue(),
-				":protocol"=>$this->getprotocol(),
-				":bits"=>(int)$this->getbits()
+				":protocol"=>(int)$this->getprotocol(),
+				":bits"=>(int)$this->getbits(),
+				":tam_rawdata"=>(int)$this->gettam_rawdata()
 			]);
 		}
 	}

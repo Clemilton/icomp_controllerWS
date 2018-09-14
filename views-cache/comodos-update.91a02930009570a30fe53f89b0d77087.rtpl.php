@@ -24,7 +24,7 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="/admin/places/<?php echo htmlspecialchars( $place["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/comodos/<?php echo htmlspecialchars( $comodo["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
+        <form role="form" action="/admin/comodos/<?php echo htmlspecialchars( $comodo["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/place/<?php echo htmlspecialchars( $place["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
           <div class="box-body">
             <div class="form-group">
               <label for="name">Nome</label>

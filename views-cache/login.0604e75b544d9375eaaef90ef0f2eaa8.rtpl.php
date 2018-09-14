@@ -48,8 +48,10 @@
                   <div class="alert alert-danger alert-dismissible " align="center" >
                     <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
-        
         <?php } ?>
 
       <div class="row">
